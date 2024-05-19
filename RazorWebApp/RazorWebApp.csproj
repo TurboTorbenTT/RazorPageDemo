@@ -7,10 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Pages\IceCreams\" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
@@ -19,5 +17,6 @@
       </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     </ItemGroup>
+
 
 </Project>
