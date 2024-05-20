@@ -6,12 +6,14 @@
     depends_on:
       - icecreamapi
     ports:
-      - 5024:443
+      - 5000:8080
         
   icecreamapi:
     build:
       context: .
       dockerfile: IceCreamApi/Dockerfile
+#    environment:
+#      ASPNETCORE_HTTP_PORTS: 80
   
   razorwebapp:
     build:
@@ -20,5 +22,6 @@
     depends_on: 
       - icecreamapi
     ports:
-      - 8081:8081
-      - 8080:8080
+      - 5001:8080
+    environment:
+        ClientAddresses__IceCreamApi: "http://icecreamapi:8080"
