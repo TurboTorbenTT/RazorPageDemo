@@ -1,14 +1,24 @@
 ﻿services:
   webapplication1:
-    image: webapplication1
     build:
       context: .
       dockerfile: WebApplication1/Dockerfile
     depends_on:
-      - iceCreamApi
-      
-  iceCreamApi:
-    image: iceCreamApi
+      - icecreamapi
+    ports:
+      - 5024:443
+        
+  icecreamapi:
     build:
       context: .
       dockerfile: IceCreamApi/Dockerfile
+  
+  razorwebapp:
+    build:
+      context: .
+      dockerfile: RazorWebApp/Dockerfile
+    depends_on: 
+      - icecreamapi
+    ports:
+      - 8081:8081
+      - 8080:8080
