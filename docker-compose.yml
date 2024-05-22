@@ -12,16 +12,28 @@
     build:
       context: .
       dockerfile: IceCreamApi/Dockerfile
-#    environment:
+    depends_on: 
+      - api.sqlserver
+    environment:
+      ConnectionsStrings__ApiSqlServer: "Server=api.sqlserver,1433;Database=SmartDatabase;user id=Sa;Password=SmartDb1!;TrustServerCertificate=True;"
 #      ASPNETCORE_HTTP_PORTS: 80
   
   razorwebapp:
     build:
       context: .
       dockerfile: RazorWebApp/Dockerfile
+      
     depends_on: 
       - icecreamapi
     ports:
       - 5001:8080
     environment:
         ClientAddresses__IceCreamApi: "http://icecreamapi:8080"
+    
+  api.sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SmartDb1!"
+    ports:
+      - 1433:1433
